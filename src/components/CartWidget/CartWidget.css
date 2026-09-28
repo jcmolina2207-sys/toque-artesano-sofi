@@ -1,0 +1,27 @@
+.cart-widget {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.4rem;
+    text-decoration: none;
+    color: #d4dee2;
+}
+
+.cart-widget-contador {
+    position: absolute;
+    top: -8px;
+    right: -10px;
+    background-color: #c0392b;
+    color: #fff;
+    font-size: 0.7rem;
+    font-weight: 700;
+    min-width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 4px;
+    line-height: 1;
+}

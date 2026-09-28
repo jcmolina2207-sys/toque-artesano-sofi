@@ -1,0 +1,3 @@
+Copiá aquí las imágenes originales del sitio (Logo.jpg, logo2.png, Logoico.ico,
+y todas las fotos de productos referenciadas en src/data/productos.json), 
+manteniendo los mismos nombres de archivo.

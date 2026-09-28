@@ -1,0 +1,238 @@
+[
+  {
+    "id": 1,
+    "nombre": "Alfajor de maicena x12",
+    "precio": 8000,
+    "categoria": "🥐 Alfajores",
+    "imagen": "/img/Alfajor de maicena.jpg.jpg",
+    "stock": 13
+  },
+  {
+    "id": 2,
+    "nombre": "Alfajor de coco",
+    "precio": 0,
+    "categoria": "🥐 Alfajores",
+    "imagen": "/img/Alfajor de coco.jpg",
+    "stock": 4
+  },
+  {
+    "id": 3,
+    "nombre": "Alfajor de maicena c/chocolate",
+    "precio": 0,
+    "categoria": "🥐 Alfajores",
+    "imagen": "/img/Alfajor de maicena c-chocolate.jpg",
+    "stock": 3
+  },
+  {
+    "id": 4,
+    "nombre": "Alfajor Bon o Bon",
+    "precio": 3500,
+    "categoria": "🥐 Alfajores",
+    "imagen": "/img/Alfajor Bon o Bon.jpg",
+    "stock": 14
+  },
+  {
+    "id": 5,
+    "nombre": "Alfajor dos corazones",
+    "precio": 3500,
+    "categoria": "🥐 Alfajores",
+    "imagen": "/img/Alfajor dos corazones.jpg",
+    "stock": 7
+  },
+  {
+    "id": 6,
+    "nombre": "Alfajor marplatense",
+    "precio": 0,
+    "categoria": "🥐 Alfajores",
+    "imagen": "/img/Alfajor marplatense.jpg",
+    "stock": 6
+  },
+  {
+    "id": 7,
+    "nombre": "Simple",
+    "precio": 500,
+    "categoria": "🥖 Churros",
+    "subcategoria": "Por unidad",
+    "imagen": "/img/Churro simple.jpg",
+    "stock": 6
+  },
+  {
+    "id": 8,
+    "nombre": "DDL",
+    "precio": 700,
+    "categoria": "🥖 Churros",
+    "subcategoria": "Por unidad",
+    "imagen": "/img/banner01.png",
+    "stock": 5
+  },
+  {
+    "id": 9,
+    "nombre": "Chocolate",
+    "precio": 800,
+    "categoria": "🥖 Churros",
+    "subcategoria": "Por unidad",
+    "imagen": "/img/Churro chocolate.png",
+    "stock": 14
+  },
+  {
+    "id": 10,
+    "nombre": "Chocolate + DDL",
+    "precio": 1100,
+    "categoria": "🥖 Churros",
+    "subcategoria": "Por unidad",
+    "imagen": "/img/Churro chocolate + DDL.png",
+    "stock": 4
+  },
+  {
+    "id": 11,
+    "nombre": "Simple (media docena)",
+    "precio": 2750,
+    "categoria": "🥖 Churros",
+    "subcategoria": "Por media docena",
+    "imagen": "/img/Churro simple.jpg",
+    "stock": 13
+  },
+  {
+    "id": 12,
+    "nombre": "DDL (media docena)",
+    "precio": 4000,
+    "categoria": "🥖 Churros",
+    "subcategoria": "Por media docena",
+    "imagen": "/img/banner01.png",
+    "stock": 14
+  },
+  {
+    "id": 13,
+    "nombre": "Chocolate (media docena)",
+    "precio": 4750,
+    "categoria": "🥖 Churros",
+    "subcategoria": "Por media docena",
+    "imagen": "/img/Churro chocolate.png",
+    "stock": 11
+  },
+  {
+    "id": 14,
+    "nombre": "Chocolate + DDL (media docena)",
+    "precio": 6500,
+    "categoria": "🥖 Churros",
+    "subcategoria": "Por media docena",
+    "imagen": "/img/Churro chocolate + DDL.png",
+    "stock": 4
+  },
+  {
+    "id": 15,
+    "nombre": "Simple (docena)",
+    "precio": 5500,
+    "categoria": "🥖 Churros",
+    "subcategoria": "Por docena",
+    "imagen": "/img/Churro simple.jpg",
+    "stock": 12
+  },
+  {
+    "id": 16,
+    "nombre": "DDL (docena)",
+    "precio": 8000,
+    "categoria": "🥖 Churros",
+    "subcategoria": "Por docena",
+    "imagen": "/img/banner01.png",
+    "stock": 9
+  },
+  {
+    "id": 17,
+    "nombre": "Chocolate (docena)",
+    "precio": 9500,
+    "categoria": "🥖 Churros",
+    "subcategoria": "Por docena",
+    "imagen": "/img/Churro chocolate.png",
+    "stock": 3
+  },
+  {
+    "id": 18,
+    "nombre": "Chocolate + DDL (docena)",
+    "precio": 13000,
+    "categoria": "🥖 Churros",
+    "subcategoria": "Por docena",
+    "imagen": "/img/Churro chocolate + DDL.png",
+    "stock": 3
+  },
+  {
+    "id": 19,
+    "nombre": "Bizcochuelo",
+    "precio": 4500,
+    "categoria": "🎂 Tortas",
+    "imagen": "/img/Bizcochuelo.jpg",
+    "stock": 4
+  },
+  {
+    "id": 20,
+    "nombre": "Lemon pie",
+    "precio": 18000,
+    "categoria": "🎂 Tortas",
+    "imagen": "/img/Lemon pie.jpg",
+    "stock": 6
+  },
+  {
+    "id": 21,
+    "nombre": "Torta brownie",
+    "precio": 26000,
+    "categoria": "🎂 Tortas",
+    "imagen": "/img/Torta brownie.jpg",
+    "stock": 6
+  },
+  {
+    "id": 22,
+    "nombre": "Pastafrola batata",
+    "precio": 12000,
+    "categoria": "🎂 Tortas",
+    "imagen": "/img/Torta brownie.jpg",
+    "stock": 11
+  },
+  {
+    "id": 23,
+    "nombre": "Pastafrola membrillo",
+    "precio": 14000,
+    "categoria": "🎂 Tortas",
+    "imagen": "/img/Torta brownie.jpg",
+    "stock": 12
+  },
+  {
+    "id": 24,
+    "nombre": "Biscochitos 1/4",
+    "precio": 1600,
+    "categoria": "🍞 Pan",
+    "imagen": "/img/Biscochitos 1-4.jpg",
+    "stock": 3
+  },
+  {
+    "id": 25,
+    "nombre": "Chipa 1/4",
+    "precio": 0,
+    "categoria": "🍞 Pan",
+    "imagen": "/img/Chipa.jpg",
+    "stock": 11
+  },
+  {
+    "id": 26,
+    "nombre": "Chips de j/q",
+    "precio": 0,
+    "categoria": "🍞 Pan",
+    "imagen": "/img/Chips de j-q.jpg",
+    "stock": 6
+  },
+  {
+    "id": 27,
+    "nombre": "Libritos 1/4",
+    "precio": 0,
+    "categoria": "🍞 Pan",
+    "imagen": "/img/Libritos 01.jpg",
+    "stock": 14
+  },
+  {
+    "id": 28,
+    "nombre": "Trenzas 1/4",
+    "precio": 0,
+    "categoria": "🍞 Pan",
+    "imagen": "/img/trenzas.jpg",
+    "stock": 13
+  }
+]

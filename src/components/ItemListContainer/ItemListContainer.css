@@ -1,0 +1,28 @@
+.item-list-wrap {
+    padding: 1.5rem 1rem 2.5rem;
+    max-width: 1300px;
+    margin: 0 auto;
+}
+
+.item-list-titulo {
+    text-align: center;
+    color: #072f42;
+    margin-bottom: 1.2rem;
+}
+
+.item-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1.3rem;
+}
+
+.mensaje-lista {
+    text-align: center;
+    padding: 3rem 1rem;
+    color: #3a5a6a;
+}
+
+.mensaje-error-lista {
+    color: #c0392b;
+}

@@ -1,0 +1,120 @@
+.carrito-wrap {
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 0 1rem 2rem;
+    color: #1a3a4a;
+}
+
+.carrito-wrap h2 {
+    text-align: center;
+    color: #072f42;
+    margin-bottom: 1.2rem;
+}
+
+.carrito-vacio {
+    text-align: center;
+    padding: 3rem 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    color: #3a5a6a;
+}
+
+.carrito-lista {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+}
+
+.carrito-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    background: #f5f0eb;
+    border-radius: 10px;
+    padding: 0.7rem 1rem;
+}
+
+.carrito-item img {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 8px;
+    background-color: #a8c8d8;
+}
+
+.carrito-item-info {
+    flex: 1;
+}
+
+.carrito-item-nombre {
+    font-weight: 700;
+    color: #072f42;
+    font-size: 0.9rem;
+}
+
+.carrito-item-precio {
+    font-size: 0.8rem;
+    color: #3a5a6a;
+}
+
+.carrito-cantidad {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+}
+
+.carrito-cantidad button {
+    width: 26px;
+    height: 26px;
+    border: none;
+    border-radius: 50%;
+    background: #072f42;
+    color: #fff;
+    cursor: pointer;
+}
+
+.carrito-item-subtotal {
+    font-weight: 700;
+    min-width: 80px;
+    text-align: right;
+}
+
+.carrito-eliminar {
+    background: none;
+    border: none;
+    color: #c0392b;
+    font-size: 1.1rem;
+    cursor: pointer;
+}
+
+.carrito-resumen {
+    margin-top: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 0.8rem;
+}
+
+.carrito-total {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #072f42;
+}
+
+.carrito-botones {
+    display: flex;
+    gap: 0.8rem;
+}
+
+.carrito-vaciar {
+    background: none;
+    border: 1px solid #072f42;
+    color: #072f42;
+    border-radius: 8px;
+    padding: 0.7rem 1.2rem;
+    cursor: pointer;
+    font-family: "Lato", sans-serif;
+}

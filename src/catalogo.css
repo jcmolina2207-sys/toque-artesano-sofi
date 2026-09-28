@@ -1,0 +1,63 @@
+/* Agregar este bloque a src/style.css */
+
+.catalogo {
+  padding: 2rem 1.5rem;
+  text-align: center;
+}
+
+.catalogo-titulo {
+  color: #072f42;
+  margin-bottom: 1.5rem;
+}
+
+.catalogo-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 1.5rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.item-card {
+  background-color: #f5f0eb;
+  border-radius: 10px;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.item-imagen {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.item-nombre {
+  color: #1a3a4a;
+  font-size: 1rem;
+}
+
+.item-precio {
+  color: #072f42;
+  font-weight: 700;
+}
+
+.item-boton {
+  background-color: #072f42;
+  color: #d4dee2;
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  margin-top: auto;
+}
+
+.cargando-mensaje {
+  text-align: center;
+  padding: 3rem 1rem;
+  color: #1a3a4a;
+}

@@ -1,0 +1,16 @@
+.seccion button {
+    margin-top: 1rem;
+    background-color: #072f42;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    padding: 0.7rem 1.6rem;
+    font-size: 1rem;
+    font-family: "Lato", sans-serif;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.seccion button:hover {
+    background-color: #0a4a67;
+}
