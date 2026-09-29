@@ -52,7 +52,7 @@ function Footer() {
             target="_blank"
             rel="noreferrer"
           >
-            <img src="/img/whatsapp.png" alt="WhatsApp" />
+            <img src="/img/whatsapp.svg" alt="WhatsApp" />
             WhatsApp
           </a>
           <a
@@ -60,13 +60,13 @@ function Footer() {
             target="_blank"
             rel="noreferrer"
           >
-            <img src="/img/instagram.png" alt="Instagram" />
+            <img src="/img/instagram.svg" alt="Instagram" />
             Instagram
           </a>
         </div>
 
         <div className="footer-mercadopago">
-          <img src="/img/mercadopago.png" alt="Mercado Pago" />
+          <img src="/img/mercadopago.svg" alt="Mercado Pago" />
         </div>
       </div>
 
