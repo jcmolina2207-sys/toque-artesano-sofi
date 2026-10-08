@@ -3,7 +3,7 @@
 Migración del sitio estático de **Toque Artesano de Sofi** a una SPA con **React + Vite**, `react-router-dom` y **Context API** para el carrito de compras.
 
 - **Sitio online:** https://toque-artesano-sofi-ten.vercel.app
-- **Repositorio:** _(pegá acá el link de GitHub)_
+- **Repositorio:** https://github.com/jcmolina2207-sys/toque-artesano-sofi
 
 ## Imágenes
 
