@@ -5,7 +5,7 @@ function Header() {
   return (
     <header className="header">
       <Link to="/">
-        <img src="/img/Logo.jpg" alt="Toque Artesano de Sofi" />
+        <img src="/img/logo.jpg" alt="Toque Artesano de Sofi" />
       </Link>
       <NavBar />
     </header>
