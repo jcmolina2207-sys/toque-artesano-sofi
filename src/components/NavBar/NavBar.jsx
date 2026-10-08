@@ -1,28 +1,39 @@
-import { NavLink } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import CartWidget from "../CartWidget/CartWidget";
 
-// NavLink en vez de Link porque necesitamos saber cuál es la ruta activa
-// para aplicarle la clase "nav-link-active" (ver style.css)
-const activeClass = ({ isActive }) => (isActive ? "nav-link-active" : undefined);
-
+// Usamos <Link> (como pide el enunciado) y useLocation() para saber cuál es
+// la ruta actual y aplicar la clase "nav-link-active" (ver global.css)
 function NavBar() {
+  const { pathname } = useLocation();
+
+  const isInicio = pathname === "/";
+  const isProductos =
+    pathname.startsWith("/productos") || pathname.startsWith("/producto/");
+  const isContacto = pathname === "/contacto";
+
   return (
     <nav className="navbar">
       <ul>
         <li>
-          <NavLink to="/" end className={activeClass}>
+          <Link to="/" className={isInicio ? "nav-link-active" : undefined}>
             Inicio
-          </NavLink>
+          </Link>
         </li>
         <li>
-          <NavLink to="/productos" className={activeClass}>
+          <Link
+            to="/productos"
+            className={isProductos ? "nav-link-active" : undefined}
+          >
             Productos
-          </NavLink>
+          </Link>
         </li>
         <li>
-          <NavLink to="/contacto" className={activeClass}>
+          <Link
+            to="/contacto"
+            className={isContacto ? "nav-link-active" : undefined}
+          >
             Contacto
-          </NavLink>
+          </Link>
         </li>
         {/* CartWidget: icono + contador que también funciona como link a /carrito */}
         <li className="navbar-cart-item">

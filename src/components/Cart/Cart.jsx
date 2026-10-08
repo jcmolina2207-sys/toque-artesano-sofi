@@ -2,8 +2,8 @@ import { useContext } from "react";
 import { Link } from "react-router-dom";
 import { CartContext } from "../../context/CartContext";
 
-// TODO: reemplazar por el número real de WhatsApp del negocio
-const NUMERO_WHATSAPP = "+5491124075797";
+
+const NUMERO_WHATSAPP = "5491124075797";
 
 function Cart() {
   const { cart, removeItem, updateQuantity, totalItems, totalPrice, clear } =
