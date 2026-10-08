@@ -39,6 +39,23 @@ function FotoEquipo({ nombre, foto }) {
 }
 
 function Footer() {
+  const [email, setEmail] = useState("");
+  // null | { texto: string, tipo: "ok" | "error" }
+  const [mensaje, setMensaje] = useState(null);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    if (email.trim() === "") {
+      setMensaje({ texto: "Ingresá tu email para suscribirte.", tipo: "error" });
+      return;
+    }
+
+    // Sin backend: solo mostramos la confirmación y limpiamos el campo.
+    setMensaje({ texto: "¡Gracias por suscribirte!", tipo: "ok" });
+    setEmail("");
+  };
+
   return (
     <footer className="footer-container">
       <div className="footer">
@@ -81,6 +98,45 @@ function Footer() {
             </div>
           ))}
         </div>
+      </section>
+
+      <section className="footer-newsletter">
+        <h3 className="footer-newsletter-titulo">Newsletter</h3>
+        <p className="footer-newsletter-texto">
+          Enterate primero de las novedades y promos de la pastelería.
+        </p>
+
+        <form className="footer-newsletter-form" onSubmit={handleSubmit}>
+          <label htmlFor="footer-newsletter-email" className="footer-sr-only">
+            Tu email
+          </label>
+          <input
+            id="footer-newsletter-email"
+            className="footer-newsletter-input"
+            type="email"
+            placeholder="tu@email.com"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+          <button type="submit" className="footer-newsletter-boton">
+            Suscribirme
+          </button>
+        </form>
+
+        {mensaje && (
+          <p
+            className={`footer-newsletter-mensaje footer-newsletter-mensaje--${mensaje.tipo}`}
+            role="status"
+          >
+            {mensaje.texto}
+          </p>
+        )}
+
+        <p className="footer-privacidad">
+          <strong>Política de privacidad:</strong> usamos tu email solo para
+          enviarte novedades de Toque Artesano de Sofi. No lo compartimos con
+          terceros y podés darte de baja cuando quieras.
+        </p>
       </section>
 
       <div className="footer-derechos">
