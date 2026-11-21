@@ -1,12 +1,12 @@
 import { Link, useLocation } from "react-router-dom";
 import CartWidget from "../CartWidget/CartWidget";
-import { useAuth } from "../../context/AuthContext";
 
 // Usamos <Link> (como pide el enunciado) y useLocation() para saber cuál es
-// la ruta actual y aplicar la clase "nav-link-active" (ver global.css)
+// la ruta actual y aplicar la clase "nav-link-active" (ver global.css).
+// Los links de Ingresar/Admin se ocultaron para la pre-entrega: la versión
+// con login y panel admin está en la rama version-firebase.
 function NavBar() {
   const { pathname } = useLocation();
-  const { user, logout } = useAuth();
 
   const isInicio = pathname === "/";
   const isProductos =
@@ -36,22 +36,6 @@ function NavBar() {
           >
             Contacto
           </Link>
-          
-        </li>
-        {user && (
-          <li>
-            <Link to="/admin">Admin</Link>
-          </li>
-        )}
-
-        <li>
-            {user ? (
-              <button type="button" className="nav-logout" onClick={logout}>
-                Salir
-              </button>
-            ) : (
-              <Link to="/login">Ingresar</Link>
-            )}
         </li>
         {/* CartWidget: icono + contador que también funciona como link a /carrito */}
         <li className="navbar-cart-item">

@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 import { CartProvider } from "./context/CartContext";
 import Layout from "./components/Layout/Layout";
 import Home from "./components/Home/Home";
@@ -15,6 +15,10 @@ function NotFound() {
   return (
     <div style={{ textAlign: "center", padding: "3rem 1rem", color: "#1a3a4a" }}>
       <h2>404 - Página no encontrada</h2>
+      <p>La página que buscás no existe o fue movida.</p>
+      <Link to="/" className="item-boton">
+        Volver al inicio
+      </Link>
     </div>
   );
 }
