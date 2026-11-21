@@ -87,6 +87,20 @@ function Footer() {
         </div>
       </div>
 
+      <section className="footer-empresa">
+        <h3 className="footer-empresa-titulo">Toque Artesano de Sofi</h3>
+        <p className="footer-empresa-texto">
+          Pastelería artesanal: alfajores, churros, tortas y panificados
+          elaborados a mano con ingredientes frescos.
+        </p>
+        <p className="footer-empresa-texto">
+          📍 Berazategui Oeste, Buenos Aires
+        </p>
+        <p className="footer-empresa-texto">
+          🕘 Martes a domingos de 09:30 a 19:00 hs
+        </p>
+      </section>
+
       <section className="equipo">
         <h3 className="equipo-titulo">Nuestro equipo</h3>
         <div className="equipo-grid">
