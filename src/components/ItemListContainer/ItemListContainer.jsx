@@ -1,18 +1,23 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Item from "../Item/Item";
+import { obtenerProductos } from "../../services/productosService";
 
 function ItemListContainer() {
   const { categoriaId } = useParams();
   const [productos, setProductos] = useState([]);
   const [cargando, setCargando] = useState(true);
+  const [error, setError] = useState("");
 
   useEffect(() => {
     setCargando(true);
-    fetch("/productos.json")
-      .then((res) => res.json())
+    setError("");
+    obtenerProductos()
       .then((data) => setProductos(data))
-      .catch((error) => console.error("Error al cargar productos:", error))
+      .catch((err) => {
+        console.error("Error al cargar productos:", err);
+        setError("No pudimos cargar los productos. Intentá de nuevo más tarde.");
+      })
       .finally(() => setCargando(false));
   }, []);
 
@@ -22,6 +27,10 @@ function ItemListContainer() {
 
   if (cargando) {
     return <p className="cargando-mensaje">Cargando productos...</p>;
+  }
+
+  if (error) {
+    return <p className="cargando-mensaje">{error}</p>;
   }
 
   return (

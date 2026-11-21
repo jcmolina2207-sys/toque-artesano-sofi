@@ -1,0 +1,86 @@
+.admin {
+  max-width: 900px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+}
+
+.admin-sesion {
+  color: #1a3a4a;
+  margin-bottom: 1rem;
+}
+
+.admin-ok {
+  color: #2e7d32;
+  font-weight: 600;
+}
+
+.admin-error {
+  color: #c0392b;
+  font-size: 0.9rem;
+  margin: 0;
+}
+
+.admin-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  max-width: 420px;
+  margin-bottom: 1.5rem;
+}
+
+.admin-form label {
+  font-weight: 600;
+  color: #1a3a4a;
+}
+
+.admin-form input {
+  padding: 0.6rem;
+  border: 1px solid #b7cfe0;
+  border-radius: 8px;
+  font-size: 1rem;
+}
+
+.admin-form-botones {
+  display: flex;
+  gap: 0.6rem;
+  margin-top: 0.5rem;
+}
+
+.admin-btn-secundario,
+.admin-btn-peligro {
+  padding: 0.4rem 0.8rem;
+  border-radius: 8px;
+  border: 1px solid #2f6f9f;
+  background: #fff;
+  color: #2f6f9f;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.admin-btn-peligro {
+  border-color: #c0392b;
+  color: #c0392b;
+}
+
+.admin-tabla-wrap {
+  overflow-x: auto;
+  margin-top: 1.5rem;
+}
+
+.admin-tabla {
+  width: 100%;
+  border-collapse: collapse;
+  background: #fff;
+}
+
+.admin-tabla th,
+.admin-tabla td {
+  padding: 0.6rem;
+  border-bottom: 1px solid #d7e5ef;
+  text-align: left;
+}
+
+.admin-acciones {
+  display: flex;
+  gap: 0.4rem;
+}

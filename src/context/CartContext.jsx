@@ -7,7 +7,7 @@ export const CartContext = createContext();
 const CARRITO_KEY = "carrito_toque_artesano";
 
 export function CartProvider({ children }) {
-  // cart: array de { id, nombre, precio, imagen, cantidad }
+  // cart: array de { id, nombre, precio, imagen, stock, cantidad }
   const [cart, setCart] = useState(() => {
     try {
       const guardado = localStorage.getItem(CARRITO_KEY);
@@ -25,14 +25,29 @@ export function CartProvider({ children }) {
     }
   }, [cart]);
 
+  // Cuántas unidades de este producto ya hay en el carrito
+  const getQuantityInCart = (id) =>
+    cart.find((item) => item.id === id)?.cantidad ?? 0;
+
+  // Cuántas unidades más se pueden agregar de este producto
+  const getAvailableStock = (producto) =>
+    Math.max(0, producto.stock - getQuantityInCart(producto.id));
+
   // Agrega un producto al carrito. Si ya existe, suma la cantidad.
+  // Devuelve { ok: true } o { ok: false, disponible } si supera el stock.
   const addToCart = (producto, cantidad) => {
+    const disponible = getAvailableStock(producto);
+
+    if (cantidad <= 0 || cantidad > disponible) {
+      return { ok: false, disponible };
+    }
+
     setCart((prevCart) => {
       const existente = prevCart.find((item) => item.id === producto.id);
       if (existente) {
         return prevCart.map((item) =>
           item.id === producto.id
-            ? { ...item, cantidad: item.cantidad + cantidad }
+            ? { ...item, stock: producto.stock, cantidad: item.cantidad + cantidad }
             : item
         );
       }
@@ -43,24 +58,38 @@ export function CartProvider({ children }) {
           nombre: producto.nombre,
           precio: producto.precio,
           imagen: producto.imagen,
+          stock: producto.stock,
           cantidad,
         },
       ];
     });
+
+    return { ok: true };
   };
 
   const removeItem = (id) => {
     setCart((prevCart) => prevCart.filter((item) => item.id !== id));
   };
 
+  // Cambia la cantidad de un item sin pasarse del stock.
   const updateQuantity = (id, cantidad) => {
     if (cantidad <= 0) {
       removeItem(id);
-      return;
+      return { ok: true };
     }
+
+    const item = cart.find((i) => i.id === id);
+    // Si el item viene de un carrito viejo sin "stock", no se puede validar
+    const limite = item?.stock ?? Infinity;
+
+    if (cantidad > limite) {
+      return { ok: false, disponible: limite };
+    }
+
     setCart((prevCart) =>
-      prevCart.map((item) => (item.id === id ? { ...item, cantidad } : item))
+      prevCart.map((i) => (i.id === id ? { ...i, cantidad } : i))
     );
+    return { ok: true };
   };
 
   const clear = () => setCart([]);
@@ -84,6 +113,8 @@ export function CartProvider({ children }) {
         totalItems,
         totalPrice,
         isInCart,
+        getQuantityInCart,
+        getAvailableStock,
         // Alias para no romper componentes que ya usaban estos nombres
         removeFromCart: removeItem,
         clearCart: clear,

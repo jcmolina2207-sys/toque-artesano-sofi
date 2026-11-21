@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Item from "../Item/Item";
+import { obtenerProductos } from "../../services/productosService";
 
 const resenas = [
   {
@@ -32,14 +33,13 @@ function Home() {
   const [ofertas, setOfertas] = useState([]);
 
   useEffect(() => {
-    fetch("/productos.json")
-      .then((res) => res.json())
-      .then((data) => {
-        const destacados = data.filter((p) => p.precio > 0).slice(0, 4);
-        setOfertas(destacados);
-      })
-      .catch((error) => console.error("Error al cargar ofertas:", error));
-  }, []);
+  obtenerProductos()
+    .then((data) => {
+      const destacados = data.filter((p) => p.precio > 0).slice(0, 4);
+      setOfertas(destacados);
+    })
+    .catch((error) => console.error("Error al cargar ofertas:", error));
+}, []);
 
   return (
     <>

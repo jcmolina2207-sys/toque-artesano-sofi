@@ -24,3 +24,17 @@
     display: flex;
     align-items: center;
 }
+.nav-logout {
+    background: none;
+    border: none;
+    color: #d4dee2;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    padding: 0;
+}
+
+.nav-logout:hover {
+    color: #fff;
+    text-decoration: underline;
+}

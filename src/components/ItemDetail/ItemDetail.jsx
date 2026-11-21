@@ -1,41 +1,72 @@
 import { useContext, useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { CartContext } from "../../context/CartContext";
+import { obtenerProducto } from "../../services/productosService";
 
 function ItemDetail() {
   const { id } = useParams();
-  const { addToCart } = useContext(CartContext);
+  const { addToCart, getAvailableStock } = useContext(CartContext);
 
   const [producto, setProducto] = useState(null);
   const [cargando, setCargando] = useState(true);
   const [cantidad, setCantidad] = useState(1);
   const [agregado, setAgregado] = useState(false);
+  const [cantidadAgregada, setCantidadAgregada] = useState(0);
+  const [error, setError] = useState("");
+  const [aviso, setAviso] = useState("");
 
   useEffect(() => {
     setCargando(true);
     setAgregado(false);
-    fetch("/productos.json")
-      .then((res) => res.json())
+    setError("");
+    setAviso("");
+    obtenerProducto(id)
       .then((data) => {
-        const encontrado = data.find((p) => String(p.id) === id);
-        setProducto(encontrado ?? null);
+        setProducto(data);
         setCantidad(1);
       })
-      .catch((error) => console.error("Error al cargar el producto:", error))
+      .catch((err) => {
+        console.error("Error al cargar el producto:", err);
+        setError("No pudimos cargar el producto. Intentá de nuevo más tarde.");
+      })
       .finally(() => setCargando(false));
   }, [id]);
 
-  const restar = () => setCantidad((c) => Math.max(1, c - 1));
-  const sumar = () =>
-    setCantidad((c) =>
-      producto?.stock ? Math.min(producto.stock, c + 1) : c + 1
-    );
+  // Unidades que todavía se pueden agregar (stock menos lo que ya está en el carrito)
+  const disponible = producto ? getAvailableStock(producto) : 0;
+
+  const restar = () => {
+    setAviso("");
+    setCantidad((c) => Math.max(1, c - 1));
+  };
+
+  const sumar = () => {
+    if (cantidad >= disponible) {
+      setAviso(`Llegaste al máximo: solo hay ${disponible} unidad(es) disponible(s).`);
+      return;
+    }
+    setAviso("");
+    setCantidad((c) => c + 1);
+  };
 
   const handleAgregar = () => {
     if (!producto) return;
-    addToCart(producto, cantidad);
-    setAgregado(true);
+    const resultado = addToCart(producto, cantidad);
+
+    if (resultado.ok) {
+      setCantidadAgregada(cantidad);
+      setAgregado(true);
+      setAviso("");
+      setCantidad(1);
+    } else {
+      setAgregado(false);
+      setAviso(`Solo quedan ${resultado.disponible} unidad(es) disponible(s).`);
+    }
   };
+
+  if (error) {
+    return <p className="cargando-mensaje">{error}</p>;
+  }
 
   if (cargando) {
     return <p className="cargando-mensaje">Cargando producto...</p>;
@@ -68,29 +99,43 @@ function ItemDetail() {
             ? `$${producto.precio.toLocaleString("es-AR")}`
             : "Consultar precio"}
         </p>
-        {typeof producto.stock === "number" && (
-          <p className="item-detalle-stock">
-            Stock disponible: {producto.stock}
-          </p>
+        <p className="item-detalle-stock">Stock disponible: {disponible}</p>
+
+        {disponible > 0 ? (
+          <>
+            <div className="cantidad-selector">
+              <button
+                type="button"
+                onClick={restar}
+                disabled={cantidad <= 1}
+                aria-label="Restar cantidad"
+              >
+                −
+              </button>
+              <span>{cantidad}</span>
+              <button
+                type="button"
+                onClick={sumar}
+                disabled={cantidad >= disponible}
+                aria-label="Sumar cantidad"
+              >
+                +
+              </button>
+            </div>
+
+            <button type="button" className="item-boton" onClick={handleAgregar}>
+              Agregar al carrito
+            </button>
+          </>
+        ) : (
+          <p className="item-detalle-sin-stock">Sin stock disponible</p>
         )}
 
-        <div className="cantidad-selector">
-          <button type="button" onClick={restar} aria-label="Restar cantidad">
-            −
-          </button>
-          <span>{cantidad}</span>
-          <button type="button" onClick={sumar} aria-label="Sumar cantidad">
-            +
-          </button>
-        </div>
-
-        <button type="button" className="item-boton" onClick={handleAgregar}>
-          Agregar al carrito
-        </button>
+        {aviso && <p className="item-detalle-aviso">{aviso}</p>}
 
         {agregado && (
           <p className="item-detalle-confirmacion">
-            ¡Se agregó {cantidad} unidad(es) al carrito!{" "}
+            ¡Se agregó {cantidadAgregada} unidad(es) al carrito!{" "}
             <Link to="/carrito">Ver carrito</Link>
           </p>
         )}
