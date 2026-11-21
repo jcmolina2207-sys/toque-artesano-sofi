@@ -43,11 +43,7 @@ function NavBar() {
             <Link to="/admin">Admin</Link>
           </li>
         )}
-        {user && (
-  <li>
-    <Link to="/admin">Admin</Link>
-  </li>
-)}
+
         <li>
             {user ? (
               <button type="button" className="nav-logout" onClick={logout}>
