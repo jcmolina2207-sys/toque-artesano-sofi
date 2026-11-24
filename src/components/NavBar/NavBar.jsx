@@ -2,6 +2,7 @@ import { Link, useLocation } from "react-router-dom";
 import styled from "styled-components";
 import CartWidget from "../CartWidget/CartWidget";
 import { useAuth } from "../../context/AuthContext";
+import { esAdmin } from "../../utils/admin";
 import {
   FaHome,
   FaStore,
@@ -101,7 +102,7 @@ function NavBar() {
             <FaEnvelope aria-hidden="true" /> Contacto
           </Link>
         </li>
-        {user && (
+        {esAdmin(user) && (
           <li>
             <Link to="/admin">
               <FaUserCog aria-hidden="true" /> Admin
