@@ -10,10 +10,15 @@ import { AuthProvider } from "./context/AuthContext";
 import Login from "./components/Login/Login";
 import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
 import Admin from "./components/Admin/Admin";
+import { Helmet } from "react-helmet-async";
 
 function NotFound() {
   return (
     <div style={{ textAlign: "center", padding: "3rem 1rem", color: "#1a3a4a" }}>
+      <Helmet>
+        <title>Página no encontrada | Toque Artesano de Sofi</title>
+        <meta name="robots" content="noindex" />
+      </Helmet>
       <h2>404 - Página no encontrada</h2>
     </div>
   );

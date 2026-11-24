@@ -88,3 +88,10 @@
     margin-top: 1rem;
     font-size: 0.9rem;
 }
+
+@media (max-width: 540px) {
+    .contacto-container {
+        margin: 1rem 0.75rem;
+        padding: 1.2rem;
+    }
+}
