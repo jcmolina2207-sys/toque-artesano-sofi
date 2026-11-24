@@ -1,6 +1,8 @@
 import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { CartContext } from "../../context/CartContext";
+import { Helmet } from "react-helmet-async";
+import { FaMinus, FaPlus, FaTrash, FaWhatsapp, FaTrashAlt } from "react-icons/fa";
 
 
 const NUMERO_WHATSAPP = "5491124075797";
@@ -63,6 +65,10 @@ function Cart() {
   if (cart.length === 0) {
     return (
       <section className="carrito-vacio">
+        <Helmet>
+          <title>Tu carrito | Toque Artesano de Sofi</title>
+          <meta name="description" content="Revisá los productos de tu pedido." />
+        </Helmet>
         <p>Tu carrito está vacío.</p>
         <Link to="/productos" className="item-boton">
           Ver productos
@@ -73,6 +79,10 @@ function Cart() {
 
   return (
     <section className="carrito">
+      <Helmet>
+        <title>Tu carrito | Toque Artesano de Sofi</title>
+        <meta name="description" content="Revisá los productos de tu pedido." />
+      </Helmet>
       <h2 className="catalogo-titulo">Tu carrito ({totalItems})</h2>
 
       <div className="carrito-lista">
@@ -104,7 +114,7 @@ function Cart() {
                     onClick={() => handleRestar(item)}
                     aria-label="Restar cantidad"
                   >
-                    −
+                    <FaMinus aria-hidden="true" />
                   </button>
                   <span>{item.cantidad}</span>
                   <button
@@ -113,7 +123,7 @@ function Cart() {
                     disabled={enElMaximo}
                     aria-label="Sumar cantidad"
                   >
-                    +
+                    <FaPlus aria-hidden="true" />
                   </button>
                 </div>
 
@@ -134,7 +144,7 @@ function Cart() {
                 onClick={() => removeItem(item.id)}
                 aria-label={`Eliminar ${item.nombre} del carrito`}
               >
-                Eliminar
+                <FaTrash aria-hidden="true" /> Eliminar
               </button>
             </div>
           );
@@ -152,14 +162,14 @@ function Cart() {
           className="item-boton"
           onClick={handleFinalizarPedido}
         >
-          Finalizar pedido por WhatsApp
+          <FaWhatsapp aria-hidden="true" /> Finalizar pedido por WhatsApp
         </button>
         <button
           type="button"
           className="item-boton carrito-vaciar"
           onClick={handleVaciar}
         >
-          Vaciar carrito
+          <FaTrashAlt aria-hidden="true" /> Vaciar carrito
         </button>
       </div>
     </section>

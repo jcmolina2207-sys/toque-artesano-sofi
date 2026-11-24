@@ -1,146 +1,122 @@
-# 🧁 Toque Artesano de Sofi
+# Toque Artesano de Sofi
 
-Tienda online de **pastelería artesanal**: alfajores, churros rellenos y otras delicias hechas a mano. El sitio permite explorar el catálogo, ver el detalle de cada producto, agregarlo al carrito y contactar a la pastelería.
+eCommerce de productos de pastelería artesanal (alfajores, churros, tortas, pastafrolas y más). Permite explorar el catálogo, buscar productos, armar un carrito y, para usuarios autenticados, administrar el catálogo desde un panel con operaciones CRUD.
 
-Es una SPA (Single Page Application) desarrollada con **React + Vite**, con navegación por `react-router-dom` y estado global del carrito mediante **Context API**. Corresponde a la **pre-entrega** del proyecto del curso de React.
+**Demo online:** [https://toque-artesano-sofi-ten.vercel.app/](https://toque-artesano-sofi-ten.vercel.app/)
 
-## 🔗 Links
+## Tecnologías
 
-- **Sitio online (Vercel):** https://toque-artesano-sofi-ten.vercel.app/
-- **Repositorio (GitHub):** https://github.com/jcmolina2207-sys/toque-artesano-sofi
+- React + Vite
+- React Router
+- Context API (carrito y autenticación)
+- Firebase Authentication y Firestore
+- React-Bootstrap (grilla y componentes responsivos)
+- styled-components
+- React Icons
+- React Helmet Async (título y metas por página)
 
-## 🛠️ Tecnologías utilizadas
+## Funcionalidades
 
-| Tecnología | Versión | Uso |
-|---|---|---|
-| [React](https://react.dev/) | ^19.2.8 | Librería principal de UI |
-| [React DOM](https://react.dev/) | ^19.2.8 | Renderizado en el navegador |
-| [React Router DOM](https://reactrouter.com/) | ^7.18.4 | Ruteo y navegación sin recargas |
-| [Vite](https://vite.dev/) | ^8.3.0 | Bundler y servidor de desarrollo |
-| [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react) | ^6.1.1 | Soporte de React en Vite |
-| [oxlint](https://oxc.rs/docs/guide/usage/linter) | ^1.81.0 | Linter |
-| Context API | — | Estado global del carrito |
-| CSS | — | Estilos (paleta azul pastel) |
+- **Catálogo** con filtro por categoría, búsqueda en tiempo real y paginación.
+- **Detalle de producto** con selección de cantidad.
+- **Carrito de compras** (`CartContext`): agregar, eliminar y vaciar.
+- **Autenticación** (`AuthContext`): login y registro con Firebase Authentication.
+- **Rutas protegidas**: el panel de administración solo es accesible con sesión iniciada.
+- **Panel de administración**: crear, editar y eliminar productos, con validaciones y modal de confirmación antes de eliminar.
+- **Estados de carga y error**: spinners y mensajes si falla la comunicación con Firebase.
+- **Diseño responsivo** para móvil, tablet y escritorio.
+- **SEO básico** con título y metaetiquetas dinámicas por página.
 
-## 🧭 Rutas disponibles
+## Requisitos previos
 
-| Ruta | Componente | Descripción |
-|---|---|---|
-| `/` | `Home` | Vista de bienvenida, ofertas y reseñas |
-| `/productos` | `ItemListContainer` | Catálogo completo de productos |
-| `/categoria/:categoriaId` | `ItemListContainer` | Catálogo filtrado por categoría |
-| `/producto/:id` | `ItemDetail` | Detalle de un producto y botón para agregar al carrito |
-| `/carrito` | `Cart` | Detalle del carrito de compras |
-| `/contacto` | `Contacto` | Formulario de contacto (Formspree) |
-| `*` | `NotFound` | Página 404 para rutas inexistentes |
+- [Node.js](https://nodejs.org/) 18 o superior
+- npm
+- Un proyecto de Firebase con **Authentication** (Email/Contraseña) y **Firestore** habilitados
 
-Todas las rutas se renderizan dentro de `Layout` (Header + NavBar + contenido + Footer) y la app completa está envuelta en `CartProvider`.
+## Instalación y ejecución local
 
-## 🚀 Cómo correrlo localmente
+1. Clonar el repositorio:
 
-**Requisitos:** [Node.js](https://nodejs.org/) (versión LTS reciente) y npm.
+   ```bash
+   git clone https://github.com/jcmolina2207-sys/toque-artesano-sofi.git
+   cd toque-artesano-sofi
+   ```
 
-```bash
-# 1. Clonar el repositorio
-git clone https://github.com/jcmolina2207-sys/toque-artesano-sofi.git
-cd toque-artesano-sofi
+2. Instalar las dependencias:
 
-# 2. Instalar dependencias
-npm install
+   ```bash
+   npm install
+   ```
 
-# 3. Levantar el entorno de desarrollo
-npm run dev
+3. Crear el archivo de variables de entorno a partir del ejemplo:
+
+   ```bash
+   cp .env.example .env
+   ```
+
+   En Windows (PowerShell): `copy .env.example .env`
+
+4. Completar el `.env` con los datos de tu proyecto de Firebase (ver la sección siguiente).
+
+5. Iniciar el servidor de desarrollo:
+
+   ```bash
+   npm run dev
+   ```
+
+   La app queda disponible en `http://localhost:5173`.
+
+## Variables de entorno
+
+Los valores se obtienen en la consola de Firebase, en **Configuración del proyecto > Tus apps > Configuración del SDK**.
+
+```env
+VITE_FIREBASE_API_KEY=
+VITE_FIREBASE_AUTH_DOMAIN=
+VITE_FIREBASE_PROJECT_ID=
+VITE_FIREBASE_STORAGE_BUCKET=
+VITE_FIREBASE_MESSAGING_SENDER_ID=
+VITE_FIREBASE_APP_ID=
 ```
 
-Luego abrí http://localhost:5173 en el navegador.
+> El archivo `.env` no se sube al repositorio. Solo se incluye `.env.example`, con las claves vacías.
 
-### Otros scripts
+## Configuración de Firebase
 
-```bash
-npm run build     # build de producción en /dist
-npm run preview   # sirve el build de /dist localmente
-npm run lint      # analiza el código con oxlint
-```
+1. **Authentication:** habilitar el proveedor **Email/Contraseña**.
+2. **Firestore:** crear la colección `productos` con documentos que tengan los campos `nombre`, `precio`, `categoria`, `imagen` y `stock`.
+3. **Dominios autorizados:** si se despliega en otro dominio, agregarlo en *Authentication > Configuración > Dominios autorizados*. Sin esto el login no funciona online.
 
-## 📁 Estructura de carpetas
+## Scripts disponibles
+
+| Comando | Descripción |
+|---------|-------------|
+| `npm run dev` | Servidor de desarrollo |
+| `npm run build` | Genera la versión de producción en `dist/` |
+| `npm run preview` | Previsualiza la build de producción |
+| `npm run lint` | Analiza el código con oxlint |
+
+## Estructura del proyecto
 
 ```
 src/
-├── components/
-│   ├── Layout/              # Layout.jsx -> Header + <Outlet/> + Footer
-│   ├── Header/              # Logo + NavBar
-│   ├── NavBar/              # Links con react-router-dom + CartWidget
-│   ├── Footer/              # Info de la empresa + tarjetas del equipo
-│   ├── CartWidget/          # Ícono de carrito con contador (usa CartContext)
-│   ├── Home/                # Vista de bienvenida ("/")
-│   ├── ItemListContainer/   # Trae productos.json con fetch + useEffect
-│   ├── Item/                # Tarjeta de producto (recibe datos por props)
-│   ├── ItemDetail/          # Detalle de un producto ("/producto/:id")
-│   ├── Cart/                # Vista del carrito ("/carrito")
-│   └── Contacto/            # Formulario de contacto (Formspree)
-├── context/
-│   └── CartContext.jsx      # Estado global del carrito
-├── style.css                # Hoja de estilos original del sitio
-├── index.css                # Ajustes complementarios de layout
-├── App.jsx                  # Rutas (BrowserRouter + Routes)
-└── main.jsx                 # Punto de entrada
-
-public/
-├── img/                     # Imágenes del sitio (nombres en kebab-case)
-└── productos.json           # Catálogo, leído con fetch("/productos.json")
+├── components/   Componentes de interfaz (Admin, Cart, Item, NavBar, etc.)
+├── context/      AuthContext y CartContext
+├── services/     Acceso a datos de Firestore
+├── styles/       Estilos globales
+├── utils/        Funciones auxiliares
+├── firebase.js   Configuración de Firebase
+└── main.jsx      Punto de entrada
 ```
 
-> **Fuente única de datos:** el catálogo vive solo en `public/productos.json`. Todos los componentes lo leen con `fetch`, por lo que no hay copias que mantener sincronizadas.
+## Despliegue
 
-## 🛒 Carrito (Context API)
+El proyecto está desplegado en Vercel. Para desplegar una copia propia:
 
-`CartContext` expone:
+1. Importar el repositorio en Vercel.
+2. Cargar las variables de entorno `VITE_FIREBASE_*` en la configuración del proyecto.
+3. Autorizar el dominio de Vercel en Firebase Authentication.
 
-- `cart`: lista de productos agregados
-- `addToCart(producto, cantidad)`
-- `removeFromCart(id)`
-- `updateQuantity(id, cantidad)`
-- `clearCart()`
-- `totalItems`: cantidad total (se muestra en el `CartWidget` del NavBar, en tiempo real)
-- `totalPrice`: precio total
-- `isInCart(id)`
+## Autor
 
-El carrito se persiste en `localStorage` bajo la clave `carrito_toque_artesano`.
-
-## 📦 Formato de `productos.json`
-
-Array plano de objetos:
-
-```json
-{
-  "id": 1,
-  "nombre": "...",
-  "precio": 8000,
-  "categoria": "🥐 Alfajores",
-  "imagen": "/img/alfajor-de-maicena.jpg",
-  "stock": 13
-}
-```
-
-- `precio`: número (sin `$` ni puntos de miles). Un producto con precio `0` se muestra como "Consultar".
-- `stock`: cantidad disponible (por ahora valores de prueba, a actualizar con el stock real).
-- Los churros tienen un campo extra `subcategoria` ("Por unidad", "Por media docena", "Por docena").
-
-## 🖼️ Imágenes
-
-Las imágenes están en `public/img/` y se referencian desde `public/productos.json` y desde los componentes (`Header.jsx`, `Footer.jsx`, `Home.jsx`).
-
-**Convención de nombres:** todo en minúsculas, sin espacios, con guiones (kebab-case), por ejemplo `churro-chocolate-ddl.png`. Vercel corre sobre Linux, donde las rutas distinguen mayúsculas y los espacios pueden fallar, así que conviene respetar esta regla al agregar archivos nuevos.
-
-Las tarjetas del equipo del footer usan `equipo-sofia.jpg`, `equipo-juan.jpg` y `equipo-adrian.jpg`. Si el archivo no existe en `public/img/`, se muestra un avatar con las iniciales en lugar de una imagen rota.
-
-## ☁️ Deploy
-
-El proyecto incluye `netlify.toml` y `vercel.json` con las reglas de redirect necesarias para que las rutas de React Router funcionen al abrirlas directamente (fallback a `index.html`).
-
-- **Vercel (usado actualmente):** repo conectado, framework detectado automáticamente como Vite.
-- **Netlify:** build command `npm run build`, publish directory `dist`.
-
----
-
-**Pre-entrega de Proyecto** — Juan Molina — 08/10/2026
+Juan Molina - Proyecto final del curso de React, Talento Tech.

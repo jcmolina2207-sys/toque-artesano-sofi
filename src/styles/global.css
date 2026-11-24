@@ -98,9 +98,6 @@ section {
 }
 
 /* ── NavBar: estado activo y carrito ── */
-.navbar ul {
-    align-items: center;
-}
 
 .nav-link-active {
     color: #ffffff !important;
@@ -199,8 +196,6 @@ section {
     padding: 0.5rem;
     background-color: #ede8e3;
 }
-
-
 
 /* ── Footer: sección del equipo ── */
 .equipo {
@@ -332,7 +327,7 @@ section {
     font-size: 0.9rem;
 }
 
-/* ── Catálogo de productos (grilla + tarjeta de Item) ── */
+/* ── Catálogo de productos (tarjeta de Item) ── */
 .catalogo {
   padding: 2rem 1.5rem;
   text-align: center;
@@ -341,14 +336,6 @@ section {
 .catalogo-titulo {
   color: #072f42;
   margin-bottom: 1.5rem;
-}
-
-.catalogo-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-  gap: 1.5rem;
-  max-width: 1200px;
-  margin: 0 auto;
 }
 
 .item-card {
@@ -577,6 +564,11 @@ section {
   align-self: flex-start;
 }
 
+.carrito-item-aviso {
+  font-size: 0.8rem;
+  color: #b03030;
+}
+
 .carrito-resumen {
   margin-top: 1.5rem;
   display: flex;
@@ -595,4 +587,67 @@ section {
   .carrito-item {
     flex-wrap: wrap;
   }
+}
+
+/* ── Íconos dentro de botones y links ── */
+.item-boton,
+.admin-btn-secundario,
+.admin-btn-peligro,
+.carrito-item-eliminar {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.cantidad-selector button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+/* ── Footer responsivo ── */
+.footer {
+  flex-wrap: wrap;
+}
+
+@media (max-width: 768px) {
+  .footer {
+    flex-direction: column;
+    gap: 1.2rem;
+    padding: 1.2rem 1rem;
+    text-align: center;
+  }
+
+  .footer-contacto {
+    flex-direction: column;
+    gap: 0.8rem;
+  }
+
+  .footer-contacto a {
+    justify-content: center;
+  }
+}
+
+/* ── Detalle de producto responsivo ── */
+@media (max-width: 600px) {
+  .item-detalle {
+    padding: 1.2rem 1rem;
+    gap: 1.2rem;
+  }
+
+  .item-detalle-imagen {
+    width: 100%;
+    height: auto;
+    max-height: 320px;
+  }
+}
+
+/* ── Detalle: clases que usa ItemDetail.jsx y no estaban definidas ── */
+.item-detalle-aviso,
+.item-detalle-sin-stock {
+  color: #b03030;
+  font-size: 0.9rem;
+}
+
+.item-detalle-sin-stock {
+  font-weight: 700;
 }

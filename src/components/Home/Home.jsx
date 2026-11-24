@@ -2,6 +2,9 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Item from "../Item/Item";
 import { obtenerProductos } from "../../services/productosService";
+import { Container, Row, Col } from "react-bootstrap";
+import { Helmet } from "react-helmet-async";
+import { FaStore } from "react-icons/fa";
 
 const resenas = [
   {
@@ -43,23 +46,34 @@ function Home() {
 
   return (
     <>
+      <Helmet>
+        <title>Toque Artesano de Sofi | Pastelería artesanal</title>
+        <meta
+          name="description"
+          content="Alfajores, churros rellenos y otras delicias artesanales hechas a mano. Explorá el catálogo y hacé tu pedido online."
+        />
+      </Helmet>
       <section className="seccion bienvenida">
         <div>
           <h1>Toque Artesano de Sofi</h1>
           <p>Repostería casera hecha con dedicación, todos los días para vos.</p>
           <Link to="/productos" className="item-boton">
-            Ver catálogo completo
+            <FaStore aria-hidden="true" /> Ver catálogo completo
           </Link>
         </div>
       </section>
 
       <section className="ofertas">
         <h2 className="ofertas-titulo">Ofertas de la semana</h2>
-        <div className="catalogo-grid">
-          {ofertas.map((producto) => (
-            <Item key={producto.id} {...producto} />
-          ))}
-        </div>
+        <Container>
+  <Row xs={1} sm={2} lg={4} className="g-4 justify-content-center">
+    {ofertas.map((producto) => (
+      <Col key={producto.id}>
+        <Item {...producto} />
+      </Col>
+    ))}
+  </Row>
+</Container>
       </section>
 
       <section className="resenas">

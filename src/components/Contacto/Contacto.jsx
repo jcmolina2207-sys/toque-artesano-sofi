@@ -1,5 +1,7 @@
 import { useState } from "react";
 import "./Contacto.css";
+import { Helmet } from "react-helmet-async";
+import { FaPaperPlane } from "react-icons/fa";
 
 const FORMSPREE_ENDPOINT = "https://formspree.io/f/maqvlnvj";
 
@@ -77,6 +79,13 @@ function Contacto() {
 
   return (
     <div className="contacto-container">
+      <Helmet>
+        <title>Contacto | Toque Artesano de Sofi</title>
+        <meta
+          name="description"
+          content="Escribinos para hacer tu pedido o consultar por nuestros productos."
+        />
+      </Helmet>
       <h2>Contactanos</h2>
       <form onSubmit={handleSubmit} noValidate>
         <div className="campo">
@@ -135,7 +144,13 @@ function Contacto() {
         </div>
 
         <button type="submit" className="btn-enviar" disabled={enviando}>
-          {enviando ? "Enviando..." : "Enviar mensaje"}
+          {enviando ? (
+            "Enviando..."
+          ) : (
+            <>
+              <FaPaperPlane aria-hidden="true" /> Enviar mensaje
+            </>
+          )}
         </button>
 
         {avisoError && <p className="aviso-envio-error">{avisoError}</p>}

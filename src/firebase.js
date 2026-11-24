@@ -2,14 +2,22 @@ import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
 
+// Las credenciales se leen del archivo .env (variables VITE_...).
+// Ver .env.example para saber qué variables hacen falta.
 const firebaseConfig = {
-  apiKey: "AIzaSyD6UYBhoGeJTODogiAZDMS5Eu4YJCb6dSQ",
-  authDomain: "toqueartesanodesofi-73bde.firebaseapp.com",
-  projectId: "toqueartesanodesofi-73bde",
-  storageBucket: "toqueartesanodesofi-73bde.firebasestorage.app",
-  messagingSenderId: "390299533469",
-  appId: "1:390299533469:web:b998b7aba9458d9caa9474",
+  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
+  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
+  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
+  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
+  appId: import.meta.env.VITE_FIREBASE_APP_ID,
 };
+
+if (!firebaseConfig.apiKey || !firebaseConfig.projectId) {
+  console.error(
+    "Faltan las variables de entorno de Firebase. Creá un archivo .env a partir de .env.example y reiniciá el servidor."
+  );
+}
 
 const app = initializeApp(firebaseConfig);
 

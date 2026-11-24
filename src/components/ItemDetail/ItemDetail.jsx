@@ -2,6 +2,8 @@ import { useContext, useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { CartContext } from "../../context/CartContext";
 import { obtenerProducto } from "../../services/productosService";
+import { Helmet } from "react-helmet-async";
+import { FaMinus, FaPlus, FaCartPlus } from "react-icons/fa";
 
 function ItemDetail() {
   const { id } = useParams();
@@ -90,7 +92,13 @@ function ItemDetail() {
         alt={producto.nombre}
         className="item-detalle-imagen"
       />
-
+      <Helmet>
+  <title>{producto.nombre} | Toque Artesano de Sofi</title>
+  <meta
+    name="description"
+    content={`${producto.nombre}: pastelería artesanal hecha a mano. Agregalo a tu pedido.`}
+  />
+</Helmet>
       <div className="item-detalle-info">
         <h2>{producto.nombre}</h2>
         <p className="item-detalle-categoria">{producto.categoria}</p>
@@ -110,7 +118,7 @@ function ItemDetail() {
                 disabled={cantidad <= 1}
                 aria-label="Restar cantidad"
               >
-                −
+                <FaMinus aria-hidden="true" />
               </button>
               <span>{cantidad}</span>
               <button
@@ -119,12 +127,12 @@ function ItemDetail() {
                 disabled={cantidad >= disponible}
                 aria-label="Sumar cantidad"
               >
-                +
+                <FaPlus aria-hidden="true" />
               </button>
             </div>
 
             <button type="button" className="item-boton" onClick={handleAgregar}>
-              Agregar al carrito
+              <FaCartPlus aria-hidden="true" /> Agregar al carrito
             </button>
           </>
         ) : (
