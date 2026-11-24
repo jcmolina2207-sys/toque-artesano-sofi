@@ -1,36 +1,41 @@
-// Los productos se leen del archivo local public/productos.json con fetch.
-const URL_PRODUCTOS = "/productos.json";
+import {
+  collection,
+  doc,
+  getDocs,
+  getDoc,
+  addDoc,
+  updateDoc,
+  deleteDoc,
+} from "firebase/firestore";
+import { db } from "../firebase";
+
+const productosRef = collection(db, "productos");
 
 // Leer todos los productos
 export async function obtenerProductos() {
-  const respuesta = await fetch(URL_PRODUCTOS);
-  if (!respuesta.ok) {
-    throw new Error(`No se pudo cargar productos.json (${respuesta.status})`);
-  }
-  return respuesta.json();
+  const snapshot = await getDocs(productosRef);
+  return snapshot.docs.map((d) => ({ id: d.id, ...d.data() }));
 }
 
-// Leer un producto por id.
-// useParams devuelve el id como string y en el JSON es número,
-// por eso se convierte con Number().
+// Leer un producto por id
 export async function obtenerProducto(id) {
-  const productos = await obtenerProductos();
-  return productos.find((p) => p.id === Number(id)) ?? null;
+  const snapshot = await getDoc(doc(db, "productos", id));
+  if (!snapshot.exists()) return null;
+  return { id: snapshot.id, ...snapshot.data() };
 }
 
-// Las funciones del panel admin quedan como "stubs" para que los imports
-// de /admin no rompan la app. La versión con Firestore está en la rama
-// version-firebase.
-const NO_DISPONIBLE = "El panel admin no está disponible en esta versión.";
-
-export async function agregarProducto() {
-  throw new Error(NO_DISPONIBLE);
+// Agregar un producto nuevo
+export async function agregarProducto(producto) {
+  const nuevo = await addDoc(productosRef, producto);
+  return nuevo.id;
 }
 
-export async function editarProducto() {
-  throw new Error(NO_DISPONIBLE);
+// Editar un producto existente
+export async function editarProducto(id, cambios) {
+  await updateDoc(doc(db, "productos", id), cambios);
 }
 
-export async function eliminarProducto() {
-  throw new Error(NO_DISPONIBLE);
+// Borrar un producto
+export async function eliminarProducto(id) {
+  await deleteDoc(doc(db, "productos", id));
 }
