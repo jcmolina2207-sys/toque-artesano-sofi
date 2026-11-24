@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Spinner } from "react-bootstrap";
+
 const VACIO = { nombre: "", precio: "", categoria: "", imagen: "", stock: "" };
 
 function ProductoForm({ inicial, categorias, onGuardar, onCancelar, guardando }) {
@@ -116,15 +117,26 @@ function ProductoForm({ inicial, categorias, onGuardar, onCancelar, guardando })
 
       <div className="admin-form-botones">
         <button type="submit" className="item-boton" disabled={guardando}>
-  {guardando ? (
-    <>
-      <Spinner as="span" animation="border" size="sm" className="me-2" />
-      Guardando...
-    </>
-  ) : (
-    "Guardar"
-  )}
-</button>
+          {guardando ? (
+            <>
+              <Spinner as="span" animation="border" size="sm" className="me-2" />
+              Guardando...
+            </>
+          ) : (
+            "Guardar"
+          )}
+        </button>
+
+        {onCancelar && (
+          <button
+            type="button"
+            className="admin-btn-secundario"
+            onClick={onCancelar}
+            disabled={guardando}
+          >
+            Cancelar
+          </button>
+        )}
       </div>
     </form>
   );
